@@ -1,7 +1,7 @@
 {
   "id": "wecom",
   "name": "OpenClaw WeCom",
-  "description": "Enterprise WeChat (WeCom) messaging channel plugin for OpenClaw",
+  "description": "Enterprise WeChat (WeCom) messaging channel plugin for OpenClaw — AI Bot, Agent App & Webhook modes",
   "channels": [
     "wecom"
   ],

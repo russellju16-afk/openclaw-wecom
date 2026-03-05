@@ -1,7 +1,7 @@
 {
-    "name": "@sunnoy/wecom",
+    "name": "@openclaw/wecom",
     "version": "1.5.0",
-    "description": "Enterprise WeChat AI Bot channel plugin for OpenClaw",
+    "description": "OpenClaw WeCom (Enterprise WeChat) channel plugin — 3 modes, 4-layer delivery fallback, dynamic agent routing (community contributed)",
     "type": "module",
     "main": "index.js",
     "files": [
@@ -34,29 +34,44 @@
         ],
         "channel": {
             "id": "wecom",
-            "label": "Enterprise WeChat",
-            "selectionLabel": "Enterprise WeChat (AI Bot)",
+            "label": "WeCom",
+            "selectionLabel": "WeCom / 企业微信 (Enterprise WeChat)",
             "docsPath": "/channels/wecom",
             "docsLabel": "wecom",
-            "blurb": "Support for Enterprise WeChat (WeCom) AI Bot integration",
-            "order": 90,
+            "blurb": "Enterprise WeChat (WeCom) with AI Bot, Agent App & Webhook modes, 4-layer delivery fallback, and dynamic agent routing.",
+            "order": 36,
             "aliases": [
                 "wecom",
-                "wework"
-            ]
+                "wework",
+                "enterprise-wechat"
+            ],
+            "quickstartAllowFrom": true
         },
         "install": {
-            "defaultChoice": "npm",
-            "npmSpec": "@sunnoy/wecom"
+            "npmSpec": "@openclaw/wecom",
+            "localPath": "extensions/wecom",
+            "defaultChoice": "npm"
         }
     },
     "keywords": [
         "openclaw",
+        "openclaw-plugin",
+        "openclaw-channel",
         "wecom",
         "enterprise-wechat",
+        "wework",
         "chat",
-        "plugin"
+        "ai-bot"
     ],
-    "author": "",
-    "license": "ISC"
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/openclaw/openclaw.git",
+        "directory": "extensions/wecom"
+    },
+    "homepage": "https://docs.openclaw.ai/channels/wecom",
+    "bugs": {
+        "url": "https://github.com/openclaw/openclaw/issues"
+    },
+    "author": "Russell",
+    "license": "MIT"
 }

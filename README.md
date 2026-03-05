@@ -2,7 +2,7 @@
 
 [English](#english) | [中文](#中文)
 
-> The most production-ready Enterprise WeChat (WeCom) channel plugin for [OpenClaw](https://github.com/openclaw). 7,200+ lines of battle-tested code powering real businesses.
+> The official Enterprise WeChat (WeCom) channel plugin for [OpenClaw](https://github.com/openclaw/openclaw). 7,200+ lines of battle-tested code powering real businesses.
 
 ---
 
@@ -83,26 +83,27 @@ Layer 4: Agent API（应用消息接口兜底）
 
 ### 快速开始
 
-#### 安装
+一条命令安装，开箱即用：
 
 ```bash
-npm install @sunnoy/wecom
+openclaw plugins install @openclaw/wecom
 ```
 
-#### 配置
+安装后在 `openclaw onboard` 向导中选择 **WeCom / 企业微信** 即可进入交互式配置。
 
-在 OpenClaw 配置文件中添加：
+#### 手动配置（可选）
 
-```json
+如果你想跳过向导，手动编辑 `~/.openclaw/openclaw.json`：
+
+```jsonc
 {
-  "plugins": {
+  "channels": {
     "wecom": {
       "enabled": true,
+      // 从企微后台获取
       "token": "your-bot-token",
       "encodingAesKey": "your-43-char-encoding-aes-key",
-      "dynamicAgents": { "enabled": true },
-      "dm": { "createAgentOnFirstMessage": true },
-      "groupChat": { "enabled": true, "requireMention": true },
+      // Agent 模式（可选，启用主动推送和文件收发）
       "agent": {
         "corpId": "your-corp-id",
         "corpSecret": "your-corp-secret",
@@ -113,12 +114,15 @@ npm install @sunnoy/wecom
 }
 ```
 
+> 动态 Agent 路由、群聊支持、消息去抖等功能**默认开启**，无需额外配置。
+
 #### 企微后台设置
 
 1. 登录[企业微信管理后台](https://work.weixin.qq.com/)
 2. 创建 AI Bot 或自建应用
-3. 配置回调 URL：`https://your-domain/webhooks/wecom`
-4. 将 Token 和 EncodingAESKey 填入配置
+3. 配置回调 URL：`https://your-openclaw-domain/webhooks/wecom`
+4. 复制 Token 和 EncodingAESKey 到上面的配置中
+5. 重启 OpenClaw：`openclaw gateway restart`
 
 ### 项目结构
 
@@ -250,23 +254,27 @@ Each layer automatically degrades to the next on failure, ensuring 100% message 
 
 ### Quick Start
 
-#### Install
+One command to install, works out of the box:
 
 ```bash
-npm install @sunnoy/wecom
+openclaw plugins install @openclaw/wecom
 ```
 
-#### Configure
+After installation, select **WeCom / 企业微信** in `openclaw onboard` wizard for interactive setup.
 
-Add to your OpenClaw config:
+#### Manual Configuration (optional)
 
-```json
+Skip the wizard and edit `~/.openclaw/openclaw.json` directly:
+
+```jsonc
 {
-  "plugins": {
+  "channels": {
     "wecom": {
       "enabled": true,
+      // Get these from WeCom admin console
       "token": "your-bot-token",
       "encodingAesKey": "your-43-char-encoding-aes-key",
+      // Agent mode (optional — enables proactive messaging and file transfer)
       "agent": {
         "corpId": "your-corp-id",
         "corpSecret": "your-corp-secret",
@@ -277,12 +285,15 @@ Add to your OpenClaw config:
 }
 ```
 
+> Dynamic agent routing, group chat, message debounce are **enabled by default** — no extra config needed.
+
 #### WeCom Admin Setup
 
 1. Log in to [WeCom Admin Console](https://work.weixin.qq.com/)
 2. Create an AI Bot or self-built application
-3. Set callback URL: `https://your-domain/webhooks/wecom`
-4. Copy Token and EncodingAESKey to your config
+3. Set callback URL: `https://your-openclaw-domain/webhooks/wecom`
+4. Copy Token and EncodingAESKey to the config above
+5. Restart OpenClaw: `openclaw gateway restart`
 
 ### Architecture
 
@@ -290,7 +301,7 @@ Add to your OpenClaw config:
 ┌──────────────────────────────────────────────┐
 │              OpenClaw Runtime                  │
 ├──────────────────────────────────────────────┤
-│           @sunnoy/wecom Plugin                │
+│           @openclaw/wecom Plugin                │
 │                                               │
 │  ┌─────────┐  ┌─────────┐  ┌──────────────┐ │
 │  │ AI Bot  │  │  Agent   │  │ Webhook Bot  │ │
@@ -340,4 +351,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
 ## License
 
-[ISC](./LICENSE)
+[MIT](./LICENSE)
